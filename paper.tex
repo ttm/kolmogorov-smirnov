@@ -98,45 +98,73 @@ If distributions are drawn from empirical data, $D_{n,n'}$ is given as are $n$ a
 All terms in equation~\ref{eq:ks} are positive and $c(\alpha)$ can be isolated:
 
 \begin{equation}\label{eq:ks2}
-c(\alpha) < \frac{D_{n,n'}}{\sqrt{\frac{n+n'}{nn'}}} = c'(\alpha)
+c(\alpha) < \frac{D_{n,n'}}{\sqrt{\frac{n+n'}{nn'}}} = c'
 \end{equation}
 
 %Tables~\ref{tab:kolSub}-\ref{tab:kolPctInter} are populated with values for $c'(\alpha)$
-When $c'(\alpha)$ is high, low values of $\alpha$ favor rejecting the null hypothesis.
-For example, when $c'(\alpha)$ is greater than $\approx 1.7$,
+When $c'$ is high, low values of $\alpha$ favor rejecting the null hypothesis.
+For example, when $c'$ is greater than $\approx 1.7$,
 one might assume that $F_{1,n}$ and $F_{2,n'}$
 are outcomes of different distributions.
-More importantly for us is that $c'(\alpha)$
+More importantly for us is that $c'$
 is a measure of distance between both distributions~\cite{kolm}.
 The main contribution of the following sections is the
 explicit display of reference values from which
-one might derive knowledge from collections of empirical measures of $c'(\alpha)$
-or even a single value of $c'(\alpha)$.
+one might derive knowledge from collections of empirical measures of $c'$
+or even a single value of $c'$.
 
 \subsection{Philosophical and technological note}
 Difference and equivalence is of central role in human cognition,
-philosophy and science~\cite{deleuze,physics}.
-This is so deeply recognized that literature often reduces
-any thought to classifications, which follow from the
-mathematical concept of equivalence classes.
+philosophy and science.
+This fact is so deeply recognized that thinkers often reduce
+thought to classifications, e.g. through the
+mathematical concept of equivalence classes~\cite{deleuze,physics}.
 Histograms are very immediate and informative
 wherever there is a phenomenon of interest which can yield measurements.
-This article should enable conclusions to be drawn about the equivalence
-of the underlying processes involved in sets of measurements for a very
+This present document should enable conclusions to be drawn about 
+the equivalence (and difference)
+of the processes underlying sets of measurements for a very
 broad range of phenomena.
 
+\subsection{Document outline}
+Section~\ref{sec:simulations} expose reference values drawn from simulations.
+Section~\ref{sec:empirical} exemplifies the use of such reference values
+to make sense of phenomena.
+Section~\ref{sec:conc} hold final remarks.
+Software and data specification are given in Appendix~\ref{ap:soft}.
+
+
 \section{References through simulations}\label{sec:simulations}
-On every case, values of $c'(\alpha)$ are given for simulations involving
+On every case, values of $c'$ are given for simulations involving
 at least normal, uniform, triangular, Weibull and power-law distributions.
 
 \subsection{When the null hypothesis is true}
+If the null hypothesis is true, than the number
+of rejections of the null hypothesis (that is: $c'>c(\alpha)$)
+in $N_c$ comparisons should not exceed $\alpha N_c$.
+To verify this, let $C'=\{c_i'\}$ be a set of $c'$ measures,
+and $C'(\alpha)=\{c' : c'>c(\alpha)\}$.
+Be $|C'(\alpha)|$ the cardinality of $C'(\alpha)$,
+i.e. the number of comparisons in which the two-sample Kolmogorov-Smirnov
+test rejects the null hypothesis for a given $\alpha$.
+
+The most important result of this section is that
+$|C'(\alpha)|$ rarely exceeds $\alpha N_c$,
+ where $N_c$ is the number of comparisons made,
+no matter what probability distribution type
+or the specific setting.
+Also important are that
+$c'>c(\alpha)$ in many cases
+and that $\alpha$ is a good estimate of the upper limit of the probability
+of such an event.
+%\begin{itemize}
+%	\item $c'>c(\alpha)$ in many cases, and $\alpha N_c$ is a good upper limit to keep in mind.
+%	\item 
+%\end{itemize}
+
 % Input tables
 % any plot? If std is ~stable, plots of the mean of c~(\alpha) are compact and informative
-
-
-\input{tables/tabUniNull}
-
-
+\input{tables/tabNormNull}
 % distribuicoes normal, uniforme, weibul
 % distribuicao de lei de potencia
 % contemplar numeros diferentes de bins, de amostras e de distribuicoes
@@ -153,6 +181,12 @@ at least normal, uniform, triangular, Weibull and power-law distributions.
 	The authors are grateful to the American Jewish Committee for maintaining an online copy of the Adorno book used on the epigraph~\cite{adorno}, to GMANE creators and maintainers for the public email list data, to the communities of the email lists and other groups used in the analysis, and to the Brazilian Presidency of the Republic for keeping Participabr code and data open.
 	We are also grateful to developers and users of Python scientific tools.
 \end{acknowledgments}
+
+
+\appendix
+\section{Software and data specifications}\label{ap:soft}
+
+
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %\nocite{*}
 \bibliography{paper}% Produces the bibliography via BibTeX.
