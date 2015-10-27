@@ -1,0 +1,137 @@
+% ****** Start of file aipsamp.tex ******
+%
+%   This file is part of the AIP files in the AIP distribution for REVTeX 4.
+%   Version 4.1 of REVTeX, October 2009
+%
+%   Copyright (c) 2009 American Institute of Physics.
+
+% Use this file as a source of example code for your aip document.
+% Use the file aiptemplate.tex as a template for your document.
+\documentclass[%
+	aip,
+	jmp,%
+	amsmath,amssymb,
+	%preprint,%
+	reprint,%
+	%author-year,%
+	%author-numerical,%
+]{revtex4-1}
+\usepackage{graphicx}% Include figure files
+\usepackage{grffile}
+\usepackage{dcolumn}% Align table columns on decimal point
+\usepackage{bm}% bold math
+%\usepackage[mathlines]{lineno}% Enable numbering of text and display math
+%\linenumbers\relax % Commence numbering lines
+\usepackage{multirow}
+\usepackage{color} % for the notes
+\usepackage{etex}
+\reserveinserts{58}
+%\usepackage{morefloats}
+\usepackage{hyperref}
+\usepackage{xcolor}
+\usepackage{amsmath}
+\hypersetup{
+	colorlinks,
+	linkcolor={red!50!black},
+	citecolor={blue!50!black},
+	urlcolor={blue!80!black}
+}
+
+\usepackage{xr}
+\externaldocument{supportingInformation}
+\maxdeadcycles=1000
+
+\usepackage{placeins}
+\begin{document}
+
+\preprint{XXXXX (preprint)}
+
+%\title[Evolution of interaction networks]{On the evolution of interaction networks: primitive typology of vertex, prominence of measures and activity statistics}% Force line breaks with \\
+%\title[Evolution of interaction networks]{On the evolution of interaction networks: a primitive typology of vertex}% Force line breaks with \\
+%\title[Stability of interaction networks]{Stability in human interaction networks: sector relative sizes, prominence of topological measures and time activity statistics.}% Force line breaks with \\
+%\title[Stability in human interaction networks]{Sector relative sizes and topological metrics time stability in human interaction networks}% Force line breaks with \\
+\title[Distance between histograms]{Distances between histograms}% Force line breaks with \\
+\author{Renato Fabbri}%
+\homepage{http://ifsc.usp.br/~fabbri/}
+\email{fabbri@usp.br}
+\affiliation{ 
+	S\~ao Carlos Institute of Physics, University of S\~ao Paulo (IFSC/USP),
+	PO Box 369, 13560-970, S\~ao Carlos, SP, Brazil %\\This line break forced with \textbackslash\textbackslash
+}
+
+\date{\today}% It is always \today, today,
+%  but any date may be explicitly specified
+
+\begin{abstract}
+This document presents reference values for a distance metric
+derived from the Kolmogorov-Smirnov statistical test.
+Each measure is a distance between two histograms.
+The sections are self-explanatory
+on deriving benchmarks by comparing samples from usual distributions
+and on exemplifying the power of the acquired knowledge.
+\end{abstract}
+
+\pacs{05.10-a,}% PACS, the Physics and Astronomy
+\keywords{Kolmogorov-Smirnov test, benchmark, distance measure, histogram}
+\maketitle
+\section{Introduction}\label{sec:intro}
+Be $F_{1,n}$ and $F_{2,n'}$ two empirical cumulative distributions,
+where $n$ and $n'$ are the number of observations on each sample.
+The two-sample Kolmogorov-Smirnov test rejects the null hypothesis
+(that the histograms are the outcome of the same underlying distribution)
+if:
+\begin{equation}\label{eq:ks}
+D_{n,n'} > c(\alpha)\sqrt{\frac{n+n'}{nn'}}
+\end{equation}
+
+\noindent where $D_{n,n'}=sup_x[F_{1,n}-F_{2,n'}]$ and $c(\alpha)$ are related to the critical region $\alpha$ by:
+
+\begin{table}[h!]
+\centering
+\begin{tabular}{|l||c|c|c|c|c|c|}\hline
+$\alpha$    & 0.1  & 0.05 & 0.025 & 0.01 & 0.005 & 0.001 \\\hline
+$c(\alpha)$ & 1.22 & 1.36 & 1.48  & 1.63 & 1.73  & 1.95  \\\hline
+\end{tabular}
+\end{table}
+
+If distributions are drawn from empirical data, $D_{n,n'}$ is given as are $n$ and $n'$.
+All terms in equation~\ref{eq:ks} are positive and $c(\alpha)$ can be isolated:
+
+\begin{equation}\label{eq:ks2}
+c(\alpha) < \frac{D_{n,n'}}{\sqrt{\frac{n+n'}{nn'}}} = c'(\alpha)
+\end{equation}
+
+%Tables~\ref{tab:kolSub}-\ref{tab:kolPctInter} are populated with values for $c'(\alpha)$
+When $c'(\alpha)$ is high, low values of $\alpha$ favor rejecting the null hypothesis.
+For example, when $c'(\alpha)$ is greater than $\approx 1.7$,
+one might assume that $F_{1,n}$ and $F_{2,n'}$
+are outcomes of different distributions.
+More importantly for us is that $c'(\alpha)$
+is a measure of distance between both distributions~\cite{kolm}.
+The main contribution of the following sections is the
+explicit display of reference values from which
+one might derive knowledge from collections of empirical measures of $c'(\alpha)$
+or even a single value of $c'(\alpha)$.
+
+\section{References through simulations}\label{sec:simulations}
+% distribuicoes normal, uniforme, weibul
+% distribuicao de lei de potencia
+% contemplar numeros diferentes de bins, de amostras e de distribuicoes
+% enquanto mantemos mudando os parametros
+\section{References in empirical data}\label{sec:empirical}
+% nltk com machado, shakespeare e biblia
+% arquivo de audio
+% bytes quaisquer de algum arquivo?
+% dados puxados da wikipedia, gmane ou ?
+\section{Conclusions}\label{sec:conc}
+\begin{acknowledgments}
+	Financial support was obtained from CNPq (140860/2013-4,
+	project 870336/1997-5), United Nations Development Program (contract: 2013/000566; project BRA/12/018) and FAPESP. 
+	The authors are grateful to the American Jewish Committee for maintaining an online copy of the Adorno book used on the epigraph~\cite{adorno}, to GMANE creators and maintainers for the public email list data, to the communities of the email lists and other groups used in the analysis, and to the Brazilian Presidency of the Republic for keeping Participabr code and data open.
+	We are also grateful to developers and users of Python scientific tools.
+\end{acknowledgments}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%\nocite{*}
+\bibliography{paper}% Produces the bibliography via BibTeX.
+
+\end{document}
