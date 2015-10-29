@@ -222,16 +222,31 @@ of rejection of the null hypothesis with critical region $\alpha$.
 \input{tables/osDistances}
 
 \section{Conclusions}\label{sec:conc}
+The $c'$ metric is robust both to determine if
+the distributions underlying the samples are the same
+and to quantify the difference between probability distributions.
+This work presents a set of benchmarks for making use $c'$.
+Example analyses of real phenomena reveal patterns
+without any of the training or clusterization usually involved in
+classification routines.
+Also, for making the analysis with other distributions
+and data, or modifications on the measure of $c'$,
+the rendering of this document is automatized in software.
+
+
 \begin{acknowledgments}
 	Financial support was obtained from CNPq (140860/2013-4,
 	project 870336/1997-5), United Nations Development Program (contract: 2013/000566; project BRA/12/018) and FAPESP. 
-	The authors are grateful to the American Jewish Committee for maintaining an online copy of the Adorno book used on the epigraph~\cite{adorno}, to GMANE creators and maintainers for the public email list data, to the communities of the email lists and other groups used in the analysis, and to the Brazilian Presidency of the Republic for keeping Participabr code and data open.
 	We are also grateful to developers and users of Python scientific tools.
 \end{acknowledgments}
 
 
 \appendix
 \section{Software and data specifications}\label{ap:soft}
+The measure of $c'$ is implemented in a small function within
+the gmane Python package~\cite{gmanePack}.
+The routines for generating the tables from simulated and empirical
+data are grouped in separated files for easing further uses.
 
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
