@@ -16,6 +16,8 @@
 	%author-year,%
 	%author-numerical,%
 ]{revtex4-1}
+%\extrafloats{1000}
+\usepackage{morefloats}% Include figure files
 \usepackage{graphicx}% Include figure files
 \usepackage{grffile}
 \usepackage{dcolumn}% Align table columns on decimal point
@@ -213,8 +215,9 @@ of rejection of the null hypothesis with critical region $\alpha$.
 \input{tables/musicGeneral}
 \input{tables/musicDistances}
 
-
 \section{OS status}
+\input{tables/osGeneral}
+\input{tables/osDistances}
 
 \section{Conclusions}\label{sec:conc}
 \begin{acknowledgments}
