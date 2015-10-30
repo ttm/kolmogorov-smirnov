@@ -238,8 +238,25 @@ of rejection of the null hypothesis with critical region $\alpha$.
 % bytes quaisquer de algum arquivo?
 % dados puxados da wikipedia, gmane ou ?
 
+This section presents immediate results
+drawn from the statistic $c$ when observed
+in real samples.
+The sample choices are arbitrary.
 
 \section{Text}
+This section exemplifies the use of $c$
+in the detection of similarity between texts.
+Each text $X$ was divided in two halves $X1$ and $X2$.
+The set of known English words were considered as were 
+the set of stopwords (words with reduced meaning such
+as prepositions and articles).
+Only the number of letters in each words was measured.
+Three approaches were chosen: 1) the text was partitioned into 1000 pieces of equal number of characters, the mean of the word size of each piece is an element of the sample; 2) the text was partitioned into 1000 pieces of equal number of characters, the standard deviation of the word size is an element of the sample; 3) each word size is an element of the sample.
+This last case yields a discrete probability distribution, which was approximated as a continuous variable and gave the greatest sensibility to text differences.
+The overall result is the same: smaller differences between parts
+of the same text.
+Notice that the $c$ is often high within a same book.
+
 \input{tables/textsGeneral}
 \input{tables/textsDistances}
 \input{tables/textsDistances2}
@@ -247,18 +264,46 @@ of rejection of the null hypothesis with critical region $\alpha$.
 \input{tables/textsDistances3}
 \input{tables/textsDistances4}
 \input{tables/textsDistances4b}
+
+\FloatBarrier
 \section{Audio}
+This section presents $c$ values
+drawn from audio for testing the sound system of the computer.
+The PCM samples of the files were normalized to fit the interval
+$[-1,1]$ to yield the samples labeled. The wavelet decomposition was performed with the Daubechies 8 Wavelet function.
+The resulting values of the $c$ statistic reflect most of all the
+different types of signals analysed:
+PCM samples and wavelet decomposition coefficients in different leafs.
+Among each type of signal, the type of sound is also reflected in the measures of $c$, with the noise having the highest values.
+
 \input{tables/audioGeneral}
 \input{tables/audioDistances}
 
+\FloatBarrier
 \section{Music}
+This section presents measures of the $c$ statistic drawn
+from the pitches of the notes of classical compositions.
+The results reflect music history.
+Take, for example, the first line, labeled ``Pale''.
+The value of $c$ is increased with the exception of Beethoven
+who, indeed, used modalism.
+In the second line, labeled ``Bach1'',
+the values of $c$ are ever increasing,
+and previous $c$ (``Pale'' $\times$ ``Bach1'')
+is only exceeded when ``Schoe`` is reached,
+which reflects the non-tonal discourse of both
+Palestrina and Sch\"onberg.
+
+
 \input{tables/musicGeneral}
 \input{tables/musicDistances}
 
+\FloatBarrier
 \section{OS status}
 \input{tables/osGeneral}
 \input{tables/osDistances}
 
+\FloatBarrier
 \section{Conclusions}\label{sec:conc}
 The $c'$ metric is robust both to determine if
 the distributions underlying the samples are the same
