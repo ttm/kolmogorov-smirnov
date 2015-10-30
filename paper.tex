@@ -52,7 +52,8 @@
 %\title[Evolution of interaction networks]{On the evolution of interaction networks: a primitive typology of vertex}% Force line breaks with \\
 %\title[Stability of interaction networks]{Stability in human interaction networks: sector relative sizes, prominence of topological measures and time activity statistics.}% Force line breaks with \\
 %\title[Stability in human interaction networks]{Sector relative sizes and topological metrics time stability in human interaction networks}% Force line breaks with \\
-\title[Distance between histograms]{Distances between histograms}% Force line breaks with \\
+\title[Distances between histograms]{A distance metric between histograms
+through the the Kolmogorov-Smirnov test statistic: specification, measures reference and example uses}% Force line breaks with \\
 \author{Renato Fabbri}%
 \homepage{http://ifsc.usp.br/~fabbri/}
 \email{fabbri@usp.br}
@@ -66,27 +67,36 @@
 
 \begin{abstract}
 This document presents reference values for a distance metric
-derived from the Kolmogorov-Smirnov statistical test.
-Each measure is a distance between two histograms.
-The sections are self-explanatory
-on deriving benchmarks by comparing samples from usual distributions
-and on exemplifying the power of the acquired knowledge.
+derived from the Kolmogorov-Smirnov test statistic $D_{n,n'}$.
+Each measure of $D_{n,n'}$ is a distance between two histograms,
+which is normalized by the number of observations in each sample
+to yield p-values $c'$, i.e. values for which 
+higher levels of significance $\alpha>c'$ implies the rejection of the null hypothesis.
+Benchmarks for the implementation are delivered by comparing samples from known distributions.
+Pattern examples in real data enables further
+insight in the robustness and power of $c'$.
 \end{abstract}
 
 \pacs{05.10-a,}% PACS, the Physics and Astronomy
-\keywords{Kolmogorov-Smirnov test, benchmark, distance measure, histogram}
+\keywords{Kolmogorov-Smirnov test, statistic, benchmark, distance measure, histogram}
 \maketitle
 \section{Introduction}\label{sec:intro}
+
+% $D_{n,n'}$
+%depicted in Figure~\ref{fig:kolms}
+
+
 Be $F_{1,n}$ and $F_{2,n'}$ two empirical cumulative distributions,
 where $n$ and $n'$ are the number of observations on each sample.
 The two-sample Kolmogorov-Smirnov test rejects the null hypothesis
-(that the histograms are the outcome of the same underlying distribution)
+that the histograms are the outcome of the same underlying distribution
 if:
 \begin{equation}\label{eq:ks}
 D_{n,n'} > c(\alpha)\sqrt{\frac{n+n'}{nn'}}
 \end{equation}
 
-\noindent where $D_{n,n'}=sup_x[F_{1,n}-F_{2,n'}]$ and $c(\alpha)$ are related to the critical region $\alpha$ by:
+\noindent where $D_{n,n'}=sup_x[F_{1,n}-F_{2,n'}]$ as in Figure~\ref{fig:dnn}
+and $c(\alpha)$ is related to the critical region $\alpha$ by:
 
 \begin{table}[h!]
 \centering
@@ -105,33 +115,44 @@ c(\alpha) < \frac{D_{n,n'}}{\sqrt{\frac{n+n'}{nn'}}} = c'
 
 %Tables~\ref{tab:kolSub}-\ref{tab:kolPctInter} are populated with values for $c'(\alpha)$
 When $c'$ is high, low values of $\alpha$ favor rejecting the null hypothesis.
-For example, when $c'$ is greater than $\approx 1.7$,
-one might assume that $F_{1,n}$ and $F_{2,n'}$
+
+\begin{figure}[!h]
+	\centering
+	\includegraphics[width=0.44\textwidth]{figs/Dnn}
+	\caption{The Kolmogorov-Smirnov statistic $D_{n,n'}$: the maximum difference between
+		two cumulative distribution functions.}
+	\label{fig:dnn}
+\end{figure}
+
+
+
+Hight values of $c'$ favor rejecting the null hypothesis.
+For example, if $\alpha=0.01$, then $c'$ greater than $1.7$,
+rejects the null hypothesis and
+suggests that $F_{n}$ and $F_{n'}$
 are outcomes of different distributions.
-More importantly for us is that $c'$
-is a measure of distance between both distributions~\cite{kolm}.
+Of core importance in this study is to regard the $c'$ statistic
+as a measure of distance between both distributions~\cite{kolm}.
 The main contribution of the following sections is the
-explicit display of reference values from which
-one might derive knowledge from collections of empirical measures of $c'$
-or even of a single value of $c'$.
+explicit display of reference values of $c'$
+from which one might derive knowledge from
+$c'$ measures or even from a single value of $c'$.
 
 \subsection{Philosophical and technological note}
 Difference and equivalence is of central role in human cognition,
 philosophy and science.
 This fact is so deeply recognized that thinkers often reduce
 thought to classifications, e.g. through the
-mathematical concept of equivalence classes~\cite{deleuze,physics}.
+mathematical concept of equivalence classes~\cite{deleuze}.
 Histograms are very immediate and informative
-wherever there is a phenomenon of interest which can yield measurements.
+roughly wherever there is a phenomenon of interest which can yield measurements.
 This present document should enable conclusions to be drawn about 
 the equivalence (and difference)
 of the processes underlying sets of measurements for a very
 broad range of phenomena.
-The minimum delivered by the following tables 
-is that the software implementation
-that render them present measures
-of how different are the underlying distributions
-of given samples.
+The following tables 
+validate the mathematical framework
+and the software implementation.
 
 \subsection{Document outline}
 Section~\ref{sec:simulations} expose reference values drawn from simulations.
