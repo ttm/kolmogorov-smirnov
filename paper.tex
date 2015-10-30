@@ -87,17 +87,17 @@ insight in the robustness and power of $c'$.
 %depicted in Figure~\ref{fig:kolms}
 
 
-Be $F_{1,n}$ and $F_{2,n'}$ two empirical cumulative distributions,
+Be $F$ and $F'$ two empirical cumulative distributions,
 where $n$ and $n'$ are the number of observations on each sample.
 The two-sample Kolmogorov-Smirnov test rejects the null hypothesis
 that the histograms are the outcome of the same underlying distribution
 if:
 \begin{equation}\label{eq:ks}
-D_{n,n'} > c(\alpha)\sqrt{\frac{n+n'}{nn'}}
+D_{F,F'} > c(\alpha)\sqrt{\frac{n+n'}{nn'}}
 \end{equation}
 
-\noindent where $D_{n,n'}=sup_x[F_{1,n}-F_{2,n'}]$ as in Figure~\ref{fig:dnn}
-and $c(\alpha)$ is related to the critical region $\alpha$ by:
+\noindent where $D_{F,F'}=sup_x[F-F']$ as in Figure~\ref{fig:dnn}
+and $c(\alpha)$ is related to the level of significance $\alpha$ by:
 
 \begin{table}[h!]
 \centering
@@ -107,37 +107,37 @@ $c(\alpha)$ & 1.22 & 1.36 & 1.48  & 1.63 & 1.73  & 1.95  \\\hline
 \end{tabular}
 \end{table}
 
-If distributions are drawn from empirical data, $D_{n,n'}$ is given as are $n$ and $n'$.
+If distributions are drawn from empirical data, $D_{F,F'}$ is given as are $n$ and $n'$.
 All terms in equation~\ref{eq:ks} are positive and $c(\alpha)$ can be isolated:
 
 \begin{equation}\label{eq:ks2}
-c(\alpha) < \frac{D_{n,n'}}{\sqrt{\frac{n+n'}{nn'}}} = c'
+	c(\alpha) < \frac{D_{n,n'}}{\sqrt{\frac{n+n'}{nn'}}} = c
 \end{equation}
 
 %Tables~\ref{tab:kolSub}-\ref{tab:kolPctInter} are populated with values for $c'(\alpha)$
-When $c'$ is high, low values of $\alpha$ favor rejecting the null hypothesis.
+When $c$ is high, low values of $\alpha$ favor rejecting the null hypothesis.
+In fact, $c$ can be normalized to yield p-values.
 
 \begin{figure}[!h]
 	\centering
 	\includegraphics[width=0.44\textwidth]{figs/Dnn}
-	\caption{The Kolmogorov-Smirnov statistic $D_{n,n'}$: the maximum difference between
+	\caption{The Kolmogorov-Smirnov statistic $D_{F,F'}$: the maximum difference between
 		two cumulative distribution functions.}
 	\label{fig:dnn}
 \end{figure}
 
-
-
-Hight values of $c'$ favor rejecting the null hypothesis.
-For example, if $\alpha=0.01$, then $c'$ greater than $1.7$,
-rejects the null hypothesis and
-suggests that $F_{n}$ and $F_{n'}$
+Hight values of $c$ favor rejecting the null hypothesis.
+For example, if the significance level is $\alpha=0.01$,
+then $c$ greater than $1.7$
+implies the rejection of the null hypothesis and
+suggests that $F$ and $F'$
 are outcomes of different distributions.
-Of core importance in this study is to regard the $c'$ statistic
+Of core importance in this study is to regard the $c$ statistic
 as a measure of distance between both distributions~\cite{kolm}.
 The main contribution of the following sections is the
-explicit display of reference values of $c'$
+explicit display of reference values of $c$
 from which one might derive knowledge from
-$c'$ measures or even from a single value of $c'$.
+$c$ measures or even from a single value of $c$.
 
 \subsection{Philosophical and technological note}
 Difference and equivalence is of central role in human cognition,
@@ -162,29 +162,31 @@ to make sense of phenomena.
 Section~\ref{sec:conc} holds final remarks.
 Software and data specification are given in Appendix~\ref{ap:soft}.
 
-
 \section{References through simulations}\label{sec:simulations}
-On every case, values of $c'$ are given for simulations involving
+On every case, values of $c$ are given for simulations involving
 at least normal, uniform, Weibull and power function distributions.
+The rendering of this article is automated to ease changes in
+the settings with which the results are reported.
+\input{aux/preambule1}
 
 \subsection{When the null hypothesis is true}
 If the null hypothesis is true, than the number
-of rejections of the null hypothesis (that is: $c'>c(\alpha)$)
+of rejections of the null hypothesis (that is: $c>c(\alpha)$)
 in $N_c$ comparisons should not exceed $\alpha N_c$.
-To verify this, let $C'=\{c_i'\}$ be a set of $c'$ measures,
-and $C'(\alpha)=\{c' : c'>c(\alpha)\}$.
-Be $|C'(\alpha)|$ the cardinality of $C'(\alpha)$,
+To verify this, let $C=\{c_i\}$ be a set of $c$ measures,
+and $C(\alpha)=\{c : c>c(\alpha)\}$.
+Be $|C(\alpha)|$ the cardinality of $C(\alpha)$,
 i.e. the number of comparisons in which the two-sample Kolmogorov-Smirnov
 test rejects the null hypothesis for a given $\alpha$.
-
-The most important result of this section is that
-$|C'(\alpha)|$ rarely exceeds $\alpha N_c$,
-no matter what probability distribution type
-or the specific setting.
+This section reports that
+$|C(\alpha)|$ very rarely exceeds $\alpha N_c$,
+for all probability distributions and settings.
 Also important are that
-$c'>c(\alpha)$ in many cases
-and that $\alpha$ is a good estimate of the upper limit of the probability
-of such an event.
+$c>c(\alpha)$ in many cases
+and that the tabulated $\alpha$ values
+are also good estimates of the upper limit
+of the frequency of such an event.
+
 %\begin{itemize}
 %	\item $c'>c(\alpha)$ in many cases, and $\alpha N_c$ is a good upper limit to keep in mind.
 %	\item 
@@ -199,10 +201,21 @@ of such an event.
 
 \FloatBarrier
 \subsection{When the null hypothesis if false}
-
-The $m(c')$ are median values of $c'$.
-$\overline{C'(\alpha)}=\frac{|C'(\alpha)|}{N_c}$ is the fraction
+The null hypothesis is always false for a sufficiently small
+significance level $\alpha$.
+In this section,
+each table holds a set comparisons between two samples:
+one sample is generated through a
+fixed distribution while the other
+sample is modified in each comparison.
+The comparison is repeated $N_c$ times.
+The measures on $c$ chosen to report the results are:
+the mean $\mu(c)$, the standard deviation $\sigma(c)$,
+the median $m(c)$,
+the  fraction
+$\overline{C(\alpha)}=\frac{|C(\alpha)|}{N_c}$
 of rejection of the null hypothesis with critical region $\alpha$.
+
 \input{tables/tabNormDiff3}
 \input{tables/tabNormDiffMean}
 \input{tables/tabUniformDiffSpread}
