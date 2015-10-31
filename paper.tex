@@ -284,13 +284,12 @@ Among each type of signal, the type of sound is also reflected in the measures o
 This section presents measures of the $c$ statistic drawn
 from the pitches of the notes of classical compositions.
 The results reflect music history.
-Take, for example, the first line, labeled ``Pale''.
-The value of $c$ is increased with the exception of Beethoven
+For example, measures of $c$ involving Palestrina
+increases with the exception of Beethoven
 who, indeed, used modalism.
-In the second line, labeled ``Bach1'',
-the values of $c$ are ever increasing,
-and previous $c$ (``Pale'' $\times$ ``Bach1'')
-is only exceeded when ``Schoe`` is reached,
+The values of $c$ related to Bach also increases along time,
+and the outcome of the comparison against Palestrina 
+is only exceeded when Sch\"onberg is reached,
 which reflects the non-tonal discourse of both
 Palestrina and Sch\"onberg.
 
@@ -300,21 +299,36 @@ Palestrina and Sch\"onberg.
 
 \FloatBarrier
 \section{OS status}
+This last example expose the statistic $c$ for samples drawn from
+the operational system of my laptop.
+The patterns are less neat than on last examples,
+but many conclusions can still be reached.
+The memory used by the most consuming processes compose
+the samples which present the highest values of $c$.
+Lowest values of $c$ are related to RAM usage.
+Again, the type of samples are mandatory:
+they might all be identified by the values of $c$
+found in comparison to other samples,
+with the exception of the RAM memory.
 \input{tables/osGeneral}
 \input{tables/osDistances}
 
 \FloatBarrier
 \section{Conclusions}\label{sec:conc}
-The $c'$ metric is robust both to determine if
+The $c$ metric is robust both to determine if
 the distributions underlying the samples are the same
-and to quantify the difference between probability distributions.
-This work presents a set of benchmarks for making use $c'$.
-Example analyses of real phenomena reveal patterns
+and to quantify the difference between probability distributions
+through the samples.
+The benchmarks for $c$, given in Section~\ref{sec:simulations},
+are useful as references to make sense e.g. of the example analysis
+of Section~\ref{sec:empirical}.
+This is specially useful for the analysis of real phenomena
 without any of the training or clusterization usually involved in
 classification routines.
-Also, for making the analysis with other distributions
-and data, or modifications on the measure of $c'$,
-the rendering of this document is automatized in software.
+The rendering of this article, and all tables,
+is automated through Python scripts in order to ease modifications
+such as the use of other distributions
+and data, or modifications on the measure of $c$.
 
 
 \begin{acknowledgments}
@@ -326,10 +340,10 @@ the rendering of this document is automatized in software.
 
 \appendix
 \section{Software and data specifications}\label{ap:soft}
-The measure of $c'$ is implemented in a small function within
+The measure of $c$ is implemented in a small function within
 the gmane Python package~\cite{gmanePack}.
 The routines for generating the tables from simulated and empirical
-data are grouped in separated files for easing further uses.
+data are grouped in separated files for easing further use.
 
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
