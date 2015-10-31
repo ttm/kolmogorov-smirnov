@@ -68,19 +68,24 @@ through the the Kolmogorov-Smirnov test statistic: specification, measures refer
 
 \begin{abstract}
 This document presents reference values for a distance metric
-derived from the Kolmogorov-Smirnov test statistic $D_{n,n'}$.
-Each measure of $D_{n,n'}$ is a distance between two histograms,
+derived from the Kolmogorov-Smirnov test statistic $D_{F,F'}$.
+Each measure of $D_{F,F'}$ is a distance between two histograms,
 which is normalized by the number of observations in each sample
-to yield p-values $c'$, i.e. values for which 
-higher levels of significance $\alpha>c'$ implies the rejection of the null hypothesis.
+to yield the $c$ statistic, which can be mapped to p-values, i.e. values for which 
+higher levels of significance $\alpha>c(\alpha)$ implies the rejection of the null hypothesis.
 Benchmarks for the implementation are delivered by comparing samples from known distributions.
 Pattern examples in real data enables further
-insight in the robustness and power of $c'$.
+insight in the robustness and power of $c$.
 \end{abstract}
 
 \pacs{05.10-a,}% PACS, the Physics and Astronomy
 \keywords{Kolmogorov-Smirnov test, statistic, benchmark, distance measure, histogram}
 \maketitle
+
+
+\tableofcontents
+
+
 \section{Introduction}\label{sec:intro}
 
 % $D_{n,n'}$
@@ -137,7 +142,23 @@ as a measure of distance between both distributions~\cite{kolm}.
 The main contribution of the following sections is the
 explicit display of reference values of $c$
 from which one might derive knowledge from
-$c$ measures or even from a single value of $c$.
+measures or even from a single value of $c$.
+
+%\subsection{Workarounds}
+%The Kolmogorov-Smirnov test is robust,
+%but data often fall into the cases where
+%it is not guaranteed to be valid.
+%In order to make the example analysis,
+%the empirical density functions are built from discrete data.
+%
+%as we fall into two of these.
+%
+% z-score
+% discrete
+% formulação com max(f-x,x-f2)
+
+%If the number of elements ($n$ and $n'$)
+%in each sample are bellow 50.
 
 \subsection{Philosophical and technological note}
 Difference and equivalence is of central role in human cognition,
@@ -244,7 +265,7 @@ drawn from the statistic $c$ when observed
 in real samples.
 The sample choices are arbitrary.
 
-\section{Text}
+\subsection{Text}
 This section exemplifies the use of $c$
 in the detection of similarity between texts.
 Each text $X$ was divided in two halves $X1$ and $X2$.
@@ -267,7 +288,7 @@ Notice that the $c$ is often high within a same book.
 \input{tables/textsDistances4b_}
 
 \FloatBarrier
-\section{Audio}
+\subsection{Audio}
 This section presents $c$ values
 drawn from audio for testing the sound system of the computer.
 The PCM samples of the files were normalized to fit the interval
@@ -281,7 +302,7 @@ Among each type of signal, the type of sound is also reflected in the measures o
 \input{tables/audioDistances_}
 
 \FloatBarrier
-\section{Music}
+\subsection{Music}
 This section presents measures of the $c$ statistic drawn
 from the pitches of the notes of classical compositions.
 The results reflect music history.
@@ -299,7 +320,7 @@ Palestrina and Sch\"onberg.
 \input{tables/musicDistances_}
 
 \FloatBarrier
-\section{OS status}
+\subsection{OS status}
 This last example expose the statistic $c$ for samples drawn from
 the operational system of my laptop.
 The patterns are less neat than on last examples,
@@ -315,7 +336,7 @@ with the exception of the RAM memory.
 \input{tables/osDistances_}
 
 \FloatBarrier
-\section{Conclusions and automation of the benchmarks}\label{sec:conc}
+\section{Conclusions and further benchmarks}\label{sec:conc}
 The $c$ statistic is robust both to determine if
 the distributions underlying the samples are the same
 and to quantify the difference between such probability distributions.
@@ -330,11 +351,12 @@ The rendering of this article and all tables
 are automated through Python scripts
 in order to ease the scrutinization of different settings~\cite{gmanePack}.
 After some exploration of  the results,
-the setting of
-$N_c=100$ comparisons per measure,
-$n=n'=1000$ elements in each sample,
-$N_b=30$ equally spaced bins was settled
-as the template of this document.
+this setting was settled as template for this document:
+simulations used $N_c=100$ comparisons per measure with
+$n=n'=1000$ elements in each sample;
+all empirical density functions
+derived from histograms with 
+$N_b=30$ equally spaced bins.
 The main reason for this choice is that
 the results are consistent and stable,
 but are still of very modest scales.
