@@ -72,7 +72,7 @@ derived from the Kolmogorov-Smirnov test statistic $D_{F,F'}$.
 Each measure of $D_{F,F'}$ is a distance between two histograms,
 which is normalized by the number of observations in each sample
 to yield the $c$ statistic, which can be mapped to p-values, i.e. values for which 
-higher levels of significance $\alpha>c(\alpha)$ implies the rejection of the null hypothesis.
+high enough levels of significance $\alpha$ implies the rejection of the null hypothesis.
 Benchmarks for the implementation are delivered by comparing samples from known distributions.
 Pattern examples in real data enables further
 insight in the robustness and power of $c$.
@@ -131,7 +131,7 @@ In fact, $c$ can be normalized to yield p-values.
 	\label{fig:dnn}
 \end{figure}
 
-Hight values of $c$ favor rejecting the null hypothesis.
+High values of $c$ favor rejecting the null hypothesis.
 For example, if the significance level is $\alpha=0.01$,
 then $c$ greater than $1.7$
 implies the rejection of the null hypothesis and
@@ -178,21 +178,21 @@ and the software implementation.
 
 \subsection{Document outline}
 Section~\ref{sec:simulations} exposes reference values drawn from simulations.
-Section~\ref{sec:empirical} exemplifies the use of such reference values
+Section~\ref{sec:empirical} exemplifies the use of the $c$ statistic
 to make sense of phenomena.
-Section~\ref{sec:conc} holds final remarks.
-Software and data specification are given in Appendix~\ref{ap:soft}.
+Section~\ref{sec:conc} holds final remarks with directions to
+software and data.
 
 \section{References through simulations}\label{sec:simulations}
-On every case, values of $c$ are given for simulations involving
-at least normal, uniform, Weibull and power function distributions.
+Values of $c$ are given for simulations involving
+normal, uniform, Weibull and power function distributions.
 The rendering of this article is automated to ease changes in
 the settings with which the results are reported.
 \input{aux/preambule1}
 
 \subsection{When the null hypothesis is true}
-If the null hypothesis is true, than the number
-of rejections of the null hypothesis (that is: $c>c(\alpha)$)
+If the null hypothesis is true, the number
+of rejections of the null hypothesis ($c>c(\alpha)$)
 in $N_c$ comparisons should not exceed $\alpha N_c$.
 To verify this, let $C=\{c_i\}$ be a set of $c$ measures,
 and $C(\alpha)=\{c : c>c(\alpha)\}$.
