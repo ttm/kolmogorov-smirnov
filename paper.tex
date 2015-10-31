@@ -315,21 +315,39 @@ with the exception of the RAM memory.
 \input{tables/osDistances_}
 
 \FloatBarrier
-\section{Conclusions}\label{sec:conc}
-The $c$ metric is robust both to determine if
+\section{Conclusions and automation of the benchmarks}\label{sec:conc}
+The $c$ statistic is robust both to determine if
 the distributions underlying the samples are the same
-and to quantify the difference between probability distributions
-through the samples.
+and to quantify the difference between such probability distributions.
 The benchmarks for $c$, given in Section~\ref{sec:simulations},
-are useful as references to make sense e.g. of the example analysis
-of Section~\ref{sec:empirical}.
-This is specially useful for the analysis of real phenomena
-without any of the training or clusterization usually involved in
+are very useful as references to make sense of data 
+e.g. as the example analyses of Section~\ref{sec:empirical}.
+Notice that the calculations require no
+training or clusterization usually involved in
 classification routines.
-The rendering of this article, and all tables,
-is automated through Python scripts in order to ease modifications
-such as the use of other distributions
-and data, or modifications on the measure of $c$.
+
+The rendering of this article and all tables
+are automated through Python scripts
+in order to ease the scrutinization of different settings~\cite{gmanePack}.
+After some exploration of  the results,
+the setting of
+$N_c=100$ comparisons per measure,
+$n=n'=1000$ elements in each sample,
+$N_b=30$ equally spaced bins was settled
+as the template of this document.
+The main reason for this choice is that
+the results are consistent and stable,
+but are still of very modest scales.
+The use of more bins 
+should enhance the results with respect to generality.
+On the other hand, samples are often not so big,
+which favors reporting the tables with a small sample size.
+
+%The $c$ statistic is implemented in a small function within
+%the Gmane Python package~\cite{gmanePack}.
+%The routines for generating the tables from simulated and empirical
+%data are grouped in separated files to ease further use.
+
 
 
 \begin{acknowledgments}
@@ -339,14 +357,8 @@ and data, or modifications on the measure of $c$.
 \end{acknowledgments}
 
 
-\appendix
-\section{Software and data specifications}\label{ap:soft}
-The measure of $c$ is implemented in a small function within
-the gmane Python package~\cite{gmanePack}.
-The routines for generating the tables from simulated and empirical
-data are grouped in separated files for easing further use.
-
-
+%\appendix
+%\section{Software and data specifications}\label{ap:soft}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %\nocite{*}
 \bibliography{paper}% Produces the bibliography via BibTeX.
