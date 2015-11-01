@@ -116,7 +116,7 @@ If distributions are drawn from empirical data, $D_{F,F'}$ is given as are $n$ a
 All terms in equation~\ref{eq:ks} are positive and $c(\alpha)$ can be isolated:
 
 \begin{equation}\label{eq:ks2}
-	c(\alpha) < \frac{D_{n,n'}}{\sqrt{\frac{n+n'}{nn'}}} = c
+	c(\alpha) < \frac{D_{F,F'}}{\sqrt{\frac{n+n'}{nn'}}} = c
 \end{equation}
 
 %Tables~\ref{tab:kolSub}-\ref{tab:kolPctInter} are populated with values for $c'(\alpha)$
@@ -272,7 +272,7 @@ Each text $X$ was divided in two halves $X1$ and $X2$.
 The set of known English words were considered as were 
 the set of stopwords (words with reduced meaning such
 as prepositions and articles).
-Only the number of letters in each words was measured.
+Only the number of letters in each word was measured.
 Three approaches were chosen: 1) the text was partitioned into 1000 pieces of equal number of characters, the mean of the word size of each piece is an element of the sample; 2) the text was partitioned into 1000 pieces of equal number of characters, the standard deviation of the word size is an element of the sample; 3) each word size is an element of the sample.
 This last case yields a discrete probability distribution, which was approximated as a continuous variable and gave the greatest sensibility to text differences.
 The overall result is the same: smaller differences between parts
