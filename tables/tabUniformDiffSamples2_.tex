@@ -1,15 +1,18 @@
 \begin{table*}[h!]
+\vspace{-.3cm}
 \begin{center}
 \begin{tabular}{| l | c | c | c | c | c | c | c | c | c | c | c |}\hline
 $n=n'$ & $\mu(c)$ & $\sigma(c)$ & m(c) & min(c) & max(c) & $\overline{C(0.1)}$ & $\overline{C(0.05)}$ & $\overline{C(0.025)}$ & $\overline{C(0.01)}$ & $\overline{C(0.005)}$ & $\overline{C(0.001)}$ \\\hline\hline
-{\bf 100} & 0.997 & 0.219 & 0.990 & 0.566,0.566,0.566 & 1.556,1.556,1.838 & 0.120 & 0.030 & 0.030 & 0.010 & 0.010 & 0.000 \\\hline
-{\bf 1000} & 2.109 & 0.182 & 2.080 & 1.655,1.744,1.766 & 2.482,2.482,2.527 & 1.000 & 1.000 & 1.000 & 1.000 & 0.990 & 0.790 \\\hline
-{\bf 10000} & 6.001 & 0.159 & 5.986 & 5.593,5.699,5.706 & 6.307,6.314,6.484 & 1.000 & 1.000 & 1.000 & 1.000 & 1.000 & 1.000 \\\hline
-{\bf 100000} & 18.739 & 0.138 & 18.748 & 18.372,18.432,18.436 & 18.966,19.002,19.062 & 1.000 & 1.000 & 1.000 & 1.000 & 1.000 & 1.000 \\\hline
+{\bf 100} & 1.013 & 0.241 & 0.990 & 0.495,0.566,0.566 & 1.485,1.556,1.556 & 0.220 & 0.090 & 0.030 & 0.000 & 0.000 & 0.000 \\\hline
+{\bf 1000} & 2.076 & 0.205 & 2.057 & 1.699,1.699,1.722 & 2.571,2.750,2.840 & 1.000 & 1.000 & 1.000 & 1.000 & 0.950 & 0.770 \\\hline
+{\bf 10000} & 6.026 & 0.164 & 6.014 & 5.657,5.671,5.742 & 6.392,6.421,6.442 & 1.000 & 1.000 & 1.000 & 1.000 & 1.000 & 1.000 \\\hline
+{\bf 100000} & 18.740 & 0.146 & 18.740 & 18.383,18.427,18.499 & 19.060,19.062,19.172 & 1.000 & 1.000 & 1.000 & 1.000 & 1.000 & 1.000 \\\hline
 \end{tabular}
 \caption{Measurements of $c$ through simulations
         with fixed uniform distributions but different number of samples.
         One distribution is uniform in [0,1].
-        The other distribution is uniform in [-0.1,1.1].}
+        The other distribution is uniform in [-0.1,1.1].
+        The KS statistic of these distributions converges
+        to 0.05 when sample sizes increases.}
 \end{center}
 \end{table*}
