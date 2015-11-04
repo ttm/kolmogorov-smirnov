@@ -69,9 +69,10 @@ derived from the Kolmogorov-Smirnov test statistic: specification, measures refe
 \begin{abstract}
 This document presents reference values for a distance metric
 derived from the Kolmogorov-Smirnov test statistic $D_{F,F'}$.
-Each measure of $D_{F,F'}$ is a distance between two histograms,
-which is normalized by the number of observations in each sample
-to yield the $c$ statistic, which can be mapped to p-values, i.e. values for which 
+Each measure of the $D_{F,F'}$ is a distance between two histograms.
+This distance is normalized by the number of observations in each sample
+to yield the $c=D_{F,F'}\sqrt{\frac{n n'}{n+n'}}$ statistic,
+which can be mapped to p-values, i.e. values for which 
 high enough levels of significance $\alpha$ implies the rejection of the null hypothesis.
 Benchmarks for the implementation are delivered by comparing samples from known distributions.
 Pattern examples in real data enables further
@@ -174,7 +175,7 @@ the equivalence (and difference)
 of the processes underlying sets of measurements for a very
 broad range of phenomena.
 The following tables 
-validate the mathematical framework
+also validate the mathematical framework
 and the software implementation.
 
 \subsection{Document outline}
@@ -258,12 +259,12 @@ The null hypothesis is true in the boldface lines.
 
 \subsection{Changing the sample sizes}
 Changing the number of elements in each sample
-changes the values of the $c$ statistic.
+changes the value of the $c$ statistic.
 This section is dedicated to tables in which
 the $c$ statistic is given for two samples of varied sizes but
 with fixed underlying distributions.
 If a same value $\epsilon$ is changed of the mean $\mu$ or
-the standard deviation$\epsilon$, the first yields greater
+the standard deviation, the first yields greater
 values of the $c$ statistic.
 
 \input{tables/tabNormalDiffSamples_}
@@ -299,6 +300,9 @@ This last case yields a discrete probability distribution, which was approximate
 The overall result is the same: smaller differences between parts
 of the same text.
 Notice that the $c$ is often high within a same book.
+The Bible was the only book where the $c$ statistic is higher between the halves
+then between the whole text and the halves.
+This might be due to the differences of the Old and New Testaments.
 
 \input{tables/textsGeneral_}
 \input{tables/textsDistances_}
