@@ -239,6 +239,9 @@ the  fraction
 $\overline{C(\alpha)}=\frac{|C(\alpha)|}{N_c}$
 of rejection of the null hypothesis given the significance level $\alpha$.
 The null hypothesis is true in the boldface lines.
+Let $D$ be the KS statistic when sample size goes to infinity.
+Notably, high values of $c$ yield smaller $|D-D_{F,F'}|$,
+i.e. more accurate estimates of $D$ through $D_{F,F'}$.
 
 \input{tables/tabNormDiffDispersion_}
 \input{tables/tabNormDiffMean_}
@@ -266,6 +269,8 @@ with fixed underlying distributions.
 If a same value $\epsilon$ is changed of the mean $\mu$ or
 the standard deviation, the first yields greater
 values of the $c$ statistic.
+In summary, raising the sample sizes raises $c$ and gives a value
+of $D_{F,F'}$ closer to $D$ (the maximum difference between the theoretical cumulative distributions).
 
 \input{tables/tabNormalDiffSamples_}
 \input{tables/tabNormalDiffSamples2_}
