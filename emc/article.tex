@@ -100,10 +100,50 @@ insights about the robustness and power of $c$.
 \pagestyle{fancy}
 
 \section{INTRODUCTION}\label{sec:intro}
+To quantify the difference between samples that are regarded as statistical events,
+one can rely in statistical distances.
+Such distances are often not metrics, cases in which they fail in one of
+the properties of a metric $m$ on sets $x_i \in X$:
+\begin{align}
+	m(x_i,x_j) &  \geq 0 \\
+	m(x_i,x_j) &  = 0 \Leftrightarrow x_i = x_j \\
+	m(x_i,x_j) &  = m(x_j,x_i)\\
+	m(x_i,x_j) &  \leq m(x_i,x_z) + m(x_z,x_j)
+\end{align}
+
+Pseudometrics violate property (1) and/or (2),
+quasimetrics violate property (3),
+semimetrics violate property (4).
+A divergence only satisfies properties (1) and (2).
+These are ``generalized metrics''.
+
+In this article, a statistical distance derived from the
+Kolmogorov-Smirnov statistic is described.
+To enable the use of the (generalized) metric,
+benchmarks are provided
+by using standard distributions in various settings and sample sizes.
+Example applications of the metric to quantify the difference among
+real signals further validate the approach.
+
+Section~\ref{sec:met} describe the metric
+and the methods used to characterize it.
+Section~\ref{sec:res} is dedicated to
+summarizing the results and essential discussions.
+Final remarks, including potential future works,
+are stated in Section~\ref{sec:res}.
+
+
+\section{METHODS}\label{sec:met}
+This section describes the $c'$ statistical distance,
+the strategy of benchmarking and to validate $c'$ by means
+of application to real samples.
+
+
+\subsection{Description of the $c'$ statistic}
 Be $F$ and $F'$ two empirical cumulative distributions,
-where $n$ and $n'$ are the number of observations on each sample.
-The two-sample Kolmogorov-Smirnov test rejects the null hypothesis
-that the histograms are the outcome of the same underlying distribution
+where $n$ and $n'$ are the number of observations in each sample.
+The two-sample Kolmogorov-Smirnov test rejects the null hypothesis,
+that the histograms are the outcome of the same underlying distribution,
 if:
 \begin{equation}\label{eq:ks}
 D_{F,F'} > c(\alpha)\sqrt{\frac{n+n'}{nn'}}
@@ -125,33 +165,62 @@ All terms in equation~\ref{eq:ks} are positive and $c(\alpha)$ can be isolated:
 
 \begin{equation}\label{eq:ks2}
 %	c(\alpha) < \frac{D_{F,F'}}{\sqrt{\frac{n+n'}{nn'}}} = c
-	c(\alpha) < D_{F,F'}\sqrt{\frac{nn'}{n+n'}} = c
+	c(\alpha) < D_{F,F'}\sqrt{\frac{nn'}{n+n'}} = c'
 \end{equation}
 
 %Tables~\ref{tab:kolSub}-\ref{tab:kolPctInter} are populated with values for $c'(\alpha)$
-When $c$ is high, low values of $\alpha$ favor rejecting the null hypothesis.
-In fact, $c$ can be normalized to yield p-values.
+The higher $c'$ is, the lower $\alpha$ can be and still entail the rejection of the null hypothesis.
 
 \begin{figure}[!h]
 	\centering
-	\includegraphics[width=0.44\textwidth]{figs/Dnn}
+	\includegraphics[width=0.44\textwidth]{../figs/Dnn}
 	\caption{The Kolmogorov-Smirnov statistic $D_{F,F'}$: the maximum difference between
 		two cumulative distribution functions.}
 	\label{fig:dnn}
 \end{figure}
 
-High values of $c$ favor rejecting the null hypothesis.
+In summary,
+high values of $c$ favor rejecting the null hypothesis.
 For example, if the significance level is $\alpha=0.01$,
-then $c$ greater than $1.7$
-implies the rejection of the null hypothesis and
-suggests that $F$ and $F'$
+then $c'$ greater than $1.7$
+implies the rejection of the null hypothesis,
+i.e. assuming that $F$ and $F'$
 are outcomes of different distributions.
-Of core importance in this study is to regard the $c$ statistic
+
+Of core importance in this study is to regard $c'$
 as a measure of distance between both distributions~\cite{kolm}.
-The main contribution of the following sections is the
-explicit display of reference values of $c$
-from which one might derive knowledge from
-measures or even from a single value of $c$.
+If fact, it is a statistical distance.
+Following the concepts defined in Section~\ref{sec:intro},
+it is a generalized metric.
+It obviously satifies the Equations (1) and (3).
+But it violates Equation (2) and satisfies Equation (4) for less obvious reasons.
+The obtainance of $c'$ depends on making histograms,
+thus if a slightly different observation of a sample lies on the same bin,
+$c'=m(x_i,m_j) = 0$  and $x_i \neq x_j$, which violates (2).
+If we instead regard $x_i$ as a histogram, not a sample,
+that it satifies (2), but we here assume that we want 
+To grasp how $c'$ satisfies Equation (4),
+let $x_i$, $x_j$ and $x_z$ be samples of the same size,
+so we only need to compare the $D_{F,F'}$.
+Let $F_i$ be the cumulative distribution of the sample $x_i$.
+Supose that in the value $\xi$ of X where $F_i$ and $F_j$ are maximally different (i.e. where they yield $D_{F_i,F_j}$),
+they are also maximaly different against $F_z$.
+If the value of $F_z(\xi)$ is between $F_x(\xi)$ and $F_j(\xi)$:
+$D_{F_i,F_z}+D_{F_j,F_z} = D_{F_i,F_j}$,
+otherwise:
+$D_{F_i,F_z}+D_{F_j,F_z} > D_{F_i,F_j}$.
+If the KS statistic $D_{F,F'}$ are not yield at the same sample value,
+it is because they are larger than in the previous cases, thus:
+$D_{F_i,F_z}+D_{F_j,F_z} > D_{F_i,F_j}$.
+And this completes the argument for:
+$D_{F_i,F_z}+D_{F_j,F_z} \geq D_{F_i,F_j}$.
+
+
+% discrete vs continous
+
+% are histograms really needed?
+
+
 
 \subsection{Philosophical and technological note}
 Difference and equivalence is of central role in human cognition,
