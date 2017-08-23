@@ -92,7 +92,7 @@ One great feature of $c'$ is that it inherits the robustness of
 Benchmarks are derived by comparing samples from standard distributions.
 The supplied example applications of the $c'$ statistic for the distinction
 	of samples in real data enables further
-insights about the robustness and power of $c$.
+insights about the robustness and power of such statistical distance.
 \end{abstract}
 
 \keywords{\em{Statistical distance, Statistics, Kolmogorov-Smirnov test, Statistical test, Benchmark}}
@@ -139,7 +139,7 @@ the strategy of benchmarking and to validate $c'$ by means
 of application to real samples.
 
 
-\subsection{Description of the $c'$ statistic}
+\subsection{Description of the $c'$ statistic}\label{sec:desc}
 Be $F$ and $F'$ two empirical cumulative distributions,
 where $n$ and $n'$ are the number of observations in each sample.
 The two-sample Kolmogorov-Smirnov test rejects the null hypothesis,
@@ -323,21 +323,97 @@ Table~\ref{tab:false1} is an example of such table.
 \input{../tables/tabPowerDiffShape_Foo}
 \input{../tables/tabNormalDiffSamples2_Foo}
 
-
-
-\subsubsection{Varying the sample sizes}
 \subsection{Example application to real samples}
+To further validate the $c'$ statistic and enable deeper insights,
+a number of applications to real samples were performed:
+\begin{itemize}
+	\item Texts: Hamlet (Shakespeare), the Bible (KJV), Moby Dick (Herman Melville) and Esaú e Jacó (Machado de Assis),
+		where studied by regarding the stopwords and the words which were not stopwords.
+		Each of these works were considered as a whole and divided in the first and last half.
+                These texts were used to obtain samples that are:
+		the mean of the token sizes, the standard variation of the token sizes,
+		the token sizes.
+		For the two first samples, the text was divided into 1000 parts in which the means
+		and standard variations where obtained.
+		The overall result is: smaller $c'$ for comparisons between parts of the same text
+		although high $c'$ was incident even between parts of the same book.
+	\item Audio: the audio segments for testing the sound system of a Ubuntu Linux distribution
+		were considered both by their PCM samples and by their Daubechies 8 wavelet coefficients.
+		The segments yielded higher $c'$ values as the audio were more different, e.g. the noise
+		yielded the higher $c'$ when compared against the other signals.
+	\item Music: each classical composition were regarded as a sample
+		and the pitches were regarded as observations.
+		The results reflect music history.
+		For example, measures of $c$ involving Palestrina
+		increases with the exception of Beethoven
+		who, indeed, used modalism.
+		The values of $c$ related to Bach also increases along time,
+		and the outcome of the comparison against Palestrina 
+		is only exceeded when Sch\"onberg is reached,
+		which reflects the non-tonal discourse of both
+		Palestrina and Sch\"onberg.
+		Table~\ref{tab:mus} exposes these results.
+	\item OS status: workload of the CPUs and of the most consuming processes.
+		Again, the type of samples are mandatory:
+		they might all be identified by the values of $c'$
+		found in comparison to other samples,
+		with the exception of the RAM memory.
+\end{itemize}
+
+\input{../tables/musicDistances_Foo}
+
 \subsection{A thorough exposition of the tables}
+These results yield many tables which do not fit this article and would make
+this exposition clumsy.
+Their thorough expositions are in~\cite{ksstats},
+eich all the tables and descriptions.
+
 \subsection{Scripts for automated generation of the tables}
+The tables that are benchmarks and that result from comparing real samples
+are rendered by scripts.
+These scripts are configurable, i.e. might be set to render other tables if needed.
+Once the new tables are rendered, they might be assembled into a PDF by means
+of the latex files that yield~\cite{ksstats}.
 
 \section{CONCLUSIONS AND FURTHER WORK}\label{sec:conc}
-% discrete vs continous
+This exposition described the $c'$ statistic, which is a statistical distance,
+the benchmark tables for $c'$ and its use to observe differences in real samples.
+As far as I understand, the tables are effective in exposing reference
+values in various settings of various distributions.
+The Kolmogorv-Smirnov test, from which $c'$ is derived, is known
+to be robust in the sense that it is usable even when the underlying distributions
+are not known or present problems for other tests.
+The overall result is that we obtained a statistical distance which is
+useful in various contexts and have now benchmark tables.
 
+Potential next steps are:
+\begin{itemize}
+	\item better organize the scripts that render the benchmark tables,
+		because they are scattered in the \texttt{tests/} directory
+		of~\cite{gmaneLegacy}.
+	\item Make a better presentation of the benchmark tables in~\cite{ksstats}.
+		They are sound but were made for personal usage and might be enhanced
+		by enhancements in the writing of their descriptions and contextualization.
+	\item Use other distributions for obtaining the tables.
+		This is relevant mainly because the number of rejections of the null hypothesis
+		was sometimes higher that expected for the significance level in power-law distributions.
+	\item Compare $c'$ to other statistical distances: in which cases are they suitable and
+		what results they yield.
+\end{itemize}
+\noindent Finally, the most urgent developments this contribution need are:
+1) understand the differences in $c'$ in the case of continuous and discrete distributions;
+and 2) implement these measurements without using histograms because they are not needed to
+attain the cumulative distribution used for the Kolmogorov-Smirnov statistic and because
+$c'$ is a metric (not a generalized metric) if obtained without using histograms,
+as exposed in Section~\ref{sec:desc}.
+
+% discrete vs continous
 % are histograms really needed?
 
-% make a better presentation of the benchmark tables
-
+% use other distributions
 % organize the scripts
+% make a better presentation of the benchmark tables
+% compare against other statistical distances
 
 
 
@@ -349,36 +425,19 @@ where we needed directions for investigation.
 % ------------------------------------------------------------------------
 \begin{thebibliography}{99}
 \fontsize{11}{0}\selectfont
+\bibitem[Chicheportiche \& Bouchaud, 2012]{kolm}
+Chicheportiche, R., \& Bouchaud, J. P. (2012). Weighted Kolmogorov-Smirnov test: Accounting for the tails. Physical Review E, 86(4), 041115.
+
 \bibitem[DrV, 2016]{stack}
 	DrV (2016). Python script to obtain the CDF from samples without doing the histogram.
 		Stack Overflow.
 		From \url{https://stackoverflow.com/questions/24788200/calculate-the-cumulative-distribution-function-cdf-in-python}
 
-\bibitem[Fabbri, 2017]{enhance}
-	Fabbri, R. (2017). Enhancements of linked data expressiveness for ontologies.
-		Encontro Nacional de Modelagem Computacional 2017 (XX ENMC).
-		From \url{https://github.com/ttm/ontologyEnhancements/raw/master/article.pdf}
+\bibitem[Fabbri, 2015]{gmaneLegacy}
+	Fabbri, R. (2015). Gmane (legacy): a toolbox for analyzing topology and text of email interaction networks derived from the Gmane database. Github repositories. From \url{https://github.com/ttm/gmaneLegacy}
 
-\bibitem[Heath \& Bizer, 2011]{ldb}
-	Heath, T. \& Bizer, C. (2011). Linked Data: Evolving the Web into a Global Data Space (1st edition). Synthesis Lectures on the Semantic Web: Theory and Technology, 1:1, 1-136. Morgan \& Claypool.
-
-\bibitem[Lehmann et al., 2015]{dbpedia}
-	Lehmann, J., Isele, R., Jakob, M., Jentzsch, A., Kontokostas, D., Mendes, P. N., ... \& Bizer, C. (2015). DBpedia–a large-scale, multilingual knowledge base extracted from Wikipedia. Semantic Web, 6(2), 167-195.
-
-\bibitem[Munzner, 2014]{munzner}
-	Munzner, T. (2014). Visualization analysis and design. CRC press.
-
-\bibitem[W3C, 2010]{w3cld}
-	W3C (2017). LINKED DATA CURRENT STATUS, from \url{https://www.w3.org/standards/techs/linkeddata}
-
-\bibitem[Ward et al., 2010]{ward}
-	Ward, M. O., Grinstein, G., \& Keim, D. (2010). Interactive data visualization: foundations, techniques, and applications. CRC Press.
-
-\bibitem[Wikipedia, 2017]{wikipData}
-	Data. (2017, August 21). In Wikipedia, The Free Encyclopedia. Retrieved
-		22:31, August 21, 2017
-		, from \url{https://en.wikipedia.org/w/index.php?title=Data&oldid=796493851}
-
+\bibitem[Fabbri, 2015]{ksstats}
+	Fabbri, R. (2015). Benchmark tables for a statistical distance metric derived from the Kolmogorov-Smirnov test. Github repositories. From \url{https://github.com/ttm/kolmogorov-smirnov/raw/master/paper.pdf}
 \end{thebibliography}
 % ------------------------------------------------------------------------
 
