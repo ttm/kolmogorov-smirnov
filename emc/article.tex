@@ -193,12 +193,7 @@ If fact, it is a statistical distance.
 Following the concepts defined in Section~\ref{sec:intro},
 it is a generalized metric.
 It obviously satifies the Equations (1) and (3).
-But it violates Equation (2) and satisfies Equation (4) for less obvious reasons.
-The obtainance of $c'$ depends on making histograms,
-thus if a slightly different observation of a sample lies on the same bin,
-$c'=m(x_i,m_j) = 0$  and $x_i \neq x_j$, which violates (2).
-If we instead regard $x_i$ as a histogram, not a sample,
-that it satifies (2), but we here assume that we want 
+It satisfies Equation (4) for less obvious reasons.
 To grasp how $c'$ satisfies Equation (4),
 let $x_i$, $x_j$ and $x_z$ be samples of the same size,
 so we only need to compare the $D_{F,F'}$.
@@ -214,36 +209,135 @@ it is because they are larger than in the previous cases, thus:
 $D_{F_i,F_z}+D_{F_j,F_z} > D_{F_i,F_j}$.
 And this completes the argument for:
 $D_{F_i,F_z}+D_{F_j,F_z} \geq D_{F_i,F_j}$.
+The $c'$ statistic might satisfy or violate Equation (2),
+depending on how it is achieved.
+If the obtainance of $c'$ depends on making histograms,
+than a slightly different observation of a sample might fall under the same bin.
+In this case, $c'=m(x_i,x_j) = 0$ and $x_i \neq x_j$, which violates (2)\footnote{If
+we instead regard $x_i$ as a histogram, not a sample,
+that it satifies (2), but we here assume that $c'$
+is in fact a measure related to samples.}.
+The cumulative distributions might be derived, however,
+not by making a histogram, but by ordering the samples directly~\citep{stack}.
+In this case, $c'$ satifies (2).
+One exception: if $x_j$ has twice but the same observations as $x_i$,
+then it violates (2).
+In other words, the distributions entailed by the samples are the same,
+but the samples are not the same, and the distance is still zero.
+
+In summary, if we regard $c'$ as a distance between histograms or distributions,
+than it is a metric satisfying all Equations (1-4).
+Otherwise it is a pseudometric because it violates Equation (2).
+
+\subsection{Benchmarks obtainance}
+We considered two cases: when the null hypothesis (that the samples were drawn from the same underlying distributions)
+is true and when it is false.
+In the case where the null hypothesis was true, 
+we compared similar distributions in various settings
+many times to assert that we would not assume
+that the null hypothesis was false more than
+$\alpha . N_c$ where $\alpha$ is the significance level
+and $N_c$ is the number of comparisons.
+That is, to assert that the Kolmogorov-Smirnov test results
+are in accordance with the theory.
+
+In the case where the null hypothesis was false, 
+we were interested in measures of $c'$ given that
+the null hypothesis is never rejected for a small enough
+$\alpha$.
+The various measures performed for $c'$ are
+described in the results.
+
+One important aspect of the way by which we made the
+benchmarks available is that the rendering of the tables
+is automated by configurable scripts,
+allowing one to obtain tables with other measures
+and other comparisons.
+
+\section{RESULTS AND DISCUSSION}\label{sec:res}
+This section briefly describes each of the
+results, which are: benchmark tables, example uses of the test in
+real samples, an exposition of all the data obtained,
+and configurable scripts for the generation of all reference tables.
+
+\subsection{When the null hypothesis is true}
+The theory of the Kolmogorov-Smirnov test
+states that one can choose a significance value $\alpha$,
+which is the maximum probability that one will reject the
+null hypothesis while it is true.
+Accordingly,
+We rendered a table for each of the distributions:
+normal, uniform, 1-parameter Weibull, power.
+Three to five different settings of the distributions
+were used, both samples had a size of 1000 observations,
+and $N_c=100$ comparisons were performed.
+
+Table~\ref{tab:true} is one of such tables.
+To understand the columns, notice that
+if the null hypothesis is true, the number
+of rejections of the null hypothesis ($c'>c(\alpha)$)
+in $N_c$ comparisons should not exceed $\alpha . N_c$.
+To verify this, let $C=\{c'_i\}$ be a set of $c'$ measures,
+and $C(\alpha)=\{c' : c'>c(\alpha)\}$.
+Be $|C(\alpha)|$ the cardinality of $C(\alpha)$,
+i.e. the number of comparisons in which the two-sample Kolmogorov-Smirnov
+test rejects the null hypothesis for a given $\alpha$.
+
+The overall result is that, in fact, the false rejections of the null hypothesis
+does not exceed $\alpha . N_c$.
+The only exception in our simulations is the power-law distribution,
+in which the number of rejections of the null hypothesis were usually bellow $\alpha . N_c$
+but, in extreme cases, our simulations reached almost $2\alpha N_c$.
+
+\input{../tables/tabWeibullNull_}
+
+\subsection{When the null hypothesis is false}\label{sec:false}
+In this case we are interested in measures of $c'$.
+The number of comparisons is still $N_c=100$.
+The measures on $c'$ chosen to report the results are:
+the mean $\mu(c')$, the standard deviation $\sigma(c')$,
+the median $m(c')$,
+the  fraction
+$\overline{C(\alpha)}=\frac{|C(\alpha)|}{N_c}$
+of rejection of the null hypothesis given the significance level $\alpha$.
+$min(c')$ states the three smallest values found in the simulations while
+$max(c')$ states the three greatest values.
+The null hypothesis is true in the boldface lines.
+$D$ is the KS statistic when sample size goes to infinity.
+
+Two sets of tables were made to study the $c'$ statistic when
+the null hypothesis is false:
+\begin{itemize}
+	\item Changing the distrubutions: inn each table, the comparisons were made with
+one of the distributions remaining unchanged
+while the other changes in each row.
+Table~\ref{tab:false1} is an example of such table.
+	\item Changing the sample sizes:
+		changing the number of elements in each sample
+		changes the value of the $c$ statistic. 
+		The $c$ statistic is given for two samples of varied sizes but
+		with fixed underlying distributions.         
+		Table~\ref{tab:false2} is an example of such table.
+\end{itemize}
+
+\input{../tables/tabPowerDiffShape_Foo}
+\input{../tables/tabNormalDiffSamples2_Foo}
 
 
+
+\subsubsection{Varying the sample sizes}
+\subsection{Example application to real samples}
+\subsection{A thorough exposition of the tables}
+\subsection{Scripts for automated generation of the tables}
+
+\section{CONCLUSIONS AND FURTHER WORK}\label{sec:conc}
 % discrete vs continous
 
 % are histograms really needed?
 
+% make a better presentation of the benchmark tables
 
-
-\subsection{Philosophical and technological note}
-Difference and equivalence is of central role in human cognition,
-philosophy and science.
-This fact is so deeply recognized that thinkers often reduce
-thought to classifications, e.g. through the
-mathematical concept of equivalence classes~\cite{deleuze}.
-Histograms are very immediate and informative
-roughly wherever there is a phenomenon of interest which can yield measurements.
-This present document should enable conclusions to be drawn about 
-the equivalence (and difference)
-of the processes underlying sets of measurements for a very
-broad range of phenomena.
-The following tables 
-also validate the mathematical framework
-and the software implementation.
-
-\subsection{Document outline}
-Section~\ref{sec:simulations} exposes reference values drawn from simulations.
-Section~\ref{sec:empirical} exemplifies the use of the $c$ statistic
-to make sense of phenomena.
-Section~\ref{sec:conc} holds final remarks with directions to
-software and data.
+% organize the scripts
 
 
 
@@ -255,6 +349,11 @@ where we needed directions for investigation.
 % ------------------------------------------------------------------------
 \begin{thebibliography}{99}
 \fontsize{11}{0}\selectfont
+\bibitem[DrV, 2016]{stack}
+	DrV (2016). Python script to obtain the CDF from samples without doing the histogram.
+		Stack Overflow.
+		From \url{https://stackoverflow.com/questions/24788200/calculate-the-cumulative-distribution-function-cdf-in-python}
+
 \bibitem[Fabbri, 2017]{enhance}
 	Fabbri, R. (2017). Enhancements of linked data expressiveness for ontologies.
 		Encontro Nacional de Modelagem Computacional 2017 (XX ENMC).
