@@ -36,7 +36,7 @@
 
 %%-----------------------------------------------EDIT-----------------------------------------------
 \title{A distance derived from the Kolmogorov-Smirnov statistic:
-	specification, reference measures and example uses}
+	specification, reference measures (benchmarks) and example uses}
 
 %%-----------------------------------------------EDIT----------------------------------------------
 \author
@@ -78,32 +78,31 @@
 
 \begin{abstract}
 Statistical distances quantifies the difference between two statistical constructs.
-In this article, we describe reference values for a semimetric
+In this article, we describe reference values for a distance between samples
 derived from the Kolmogorov-Smirnov statistic $D_{F,F'}$.
-Each measure of the $D_{F,F'}$ is a distance between two histograms.
+Each measure of the $D_{F,F'}$ is a measure of difference between two samples.
 This distance is normalized by the number of observations in each sample
 to yield the $c'=D_{F,F'}\sqrt{\frac{n n'}{n+n'}}$ statistic,
-which can be mapped to p-values, i.e. values for which 
-high enough levels of significance $\alpha$ implies the rejection of the
+for which high levels favor the rejection of the
 	null hypothesis (that the samples are drawn from the same distribution).
 One great feature of $c'$ is that it inherits the robustness of
 	$D_{F,F'}$ and is thus suitable for use in settings where
 	the underlying distributions are not known.
-Benchmarks are derived by comparing samples from standard distributions.
+Benchmarks are obtained by comparing samples derived from standard distributions.
 The supplied example applications of the $c'$ statistic for the distinction
 	of samples in real data enables further
 insights about the robustness and power of such statistical distance.
 \end{abstract}
 
-\keywords{\em{Statistical distance, Statistics, Kolmogorov-Smirnov test, Statistical test, Benchmark}}
+\keywords{\em{Statistics, Statistical distance, Statistical test, Kolmogorov-Smirnov test, Benchmark}}
 
 \pagestyle{fancy}
 
 \section{INTRODUCTION}\label{sec:intro}
 To quantify the difference between samples that are regarded as statistical events,
 one can rely in statistical distances.
-Such distances are often not metrics, cases in which they fail in one of
-the properties of a metric $m$ on sets $x_i \in X$:
+Such distances are often not metrics, cases in which they do not satify one or more of
+the properties of a metric $m$ on samples $x_i \in X$:
 \begin{align}
 	m(x_i,x_j) &  \geq 0 \\
 	m(x_i,x_j) &  = 0 \Leftrightarrow x_i = x_j \\
@@ -115,27 +114,29 @@ Pseudometrics violate property (1) and/or (2),
 quasimetrics violate property (3),
 semimetrics violate property (4).
 A divergence only satisfies properties (1) and (2).
-These are ``generalized metrics''.
+These are ``generalized metrics''~\citep{wikiStatDist}.
 
-In this article, a statistical distance derived from the
-Kolmogorov-Smirnov statistic is described.
-To enable the use of the (generalized) metric,
+In this article, a statistical distance $c'$ derived from the
+Kolmogorov-Smirnov test is described.
+The $c'$ statistic can be both a true or a generalized metric,
+depending on the implementation details, as explained in Section~\ref{sec:desc}.
+To enable the use of the $c'$ metric,
 benchmarks are provided
 by using standard distributions in various settings and sample sizes.
 Example applications of the metric to quantify the difference among
 real signals further validate the approach.
 
-Section~\ref{sec:met} describe the metric
+Section~\ref{sec:met} describes the metric
 and the methods used to characterize it.
 Section~\ref{sec:res} is dedicated to
 summarizing the results and essential discussions.
 Final remarks, including potential future works,
-are stated in Section~\ref{sec:res}.
+are stated in Section~\ref{sec:conc}.
 
 
 \section{METHODS}\label{sec:met}
 This section describes the $c'$ statistical distance,
-the strategy of benchmarking and to validate $c'$ by means
+the strategy of benchmarking and the validation of $c'$ by means
 of application to real samples.
 
 
@@ -171,28 +172,30 @@ All terms in equation~\ref{eq:ks} are positive and $c(\alpha)$ can be isolated:
 %Tables~\ref{tab:kolSub}-\ref{tab:kolPctInter} are populated with values for $c'(\alpha)$
 The higher $c'$ is, the lower $\alpha$ can be and still entail the rejection of the null hypothesis.
 
-\begin{figure}[!h]
-	\centering
+\begin{figure}[!htbp] %h or !htbp
+\vspace{-2pt}
+\begin{center}
 	\includegraphics[width=0.44\textwidth]{../figs/Dnn}
 	\caption{The Kolmogorov-Smirnov statistic $D_{F,F'}$: the maximum difference between
 		two cumulative distribution functions.}
 	\label{fig:dnn}
+\end{center}
 \end{figure}
 
 In summary,
-high values of $c$ favor rejecting the null hypothesis.
+high values of $c'$ favor rejecting the null hypothesis.
 For example, if the significance level is $\alpha=0.01$,
 then $c'$ greater than $1.7$
 implies the rejection of the null hypothesis,
-i.e. assuming that $F$ and $F'$
+i.e. implies the assumption that $F$ and $F'$
 are outcomes of different distributions.
 
 Of core importance in this study is to regard $c'$
-as a measure of distance between both distributions~\cite{kolm}.
+as a measure of distance between both distributions.
 If fact, it is a statistical distance.
 Following the concepts defined in Section~\ref{sec:intro},
-it is a generalized metric.
-It obviously satifies the Equations (1) and (3).
+it can be both a true or a generalized metric, depending on the implementation.
+It obviously satisfies the Equations (1) and (3).
 It satisfies Equation (4) for less obvious reasons.
 To grasp how $c'$ satisfies Equation (4),
 let $x_i$, $x_j$ and $x_z$ be samples of the same size,
@@ -204,7 +207,7 @@ If the value of $F_z(\xi)$ is between $F_x(\xi)$ and $F_j(\xi)$:
 $D_{F_i,F_z}+D_{F_j,F_z} = D_{F_i,F_j}$,
 otherwise:
 $D_{F_i,F_z}+D_{F_j,F_z} > D_{F_i,F_j}$.
-If the KS statistic $D_{F,F'}$ are not yield at the same sample value,
+If the KS statistic $D_{F,F'}$ are not yield at the same value,
 it is because they are larger than in the previous cases, thus:
 $D_{F_i,F_z}+D_{F_j,F_z} > D_{F_i,F_j}$.
 And this completes the argument for:
@@ -215,24 +218,23 @@ If the obtainance of $c'$ depends on making histograms,
 than a slightly different observation of a sample might fall under the same bin.
 In this case, $c'=m(x_i,x_j) = 0$ and $x_i \neq x_j$, which violates (2)\footnote{If
 we instead regard $x_i$ as a histogram, not a sample,
-that it satifies (2), but we here assume that $c'$
+then it satifies (2), but we here assume that $c'$
 is in fact a measure related to samples.}.
 The cumulative distributions might be derived, however,
-not by making a histogram, but by ordering the samples directly~\citep{stack}.
+not by making a histogram, but simply by ordering the samples~\citep{stack}.
 In this case, $c'$ satifies (2).
-One exception: if $x_j$ has twice but the same observations as $x_i$,
-then it violates (2).
-In other words, the distributions entailed by the samples are the same,
+One exception: if $x_j$ has twice each of the observations in $x_i$,
+then it violates (2)
+because the distributions entailed by the samples are the same,
 but the samples are not the same, and the distance is still zero.
 
-In summary, if we regard $c'$ as a distance between histograms or distributions,
-than it is a metric satisfying all Equations (1-4).
-Otherwise it is a pseudometric because it violates Equation (2).
+In summary, if $c'$ can be classified both as a metric and a pseudometric,
+depending on how it is obtained and theoretical nuances.
 
 \subsection{Benchmarks obtainance}
 We considered two cases: when the null hypothesis (that the samples were drawn from the same underlying distributions)
 is true and when it is false.
-In the case where the null hypothesis was true, 
+For the case where the null hypothesis is true, 
 we compared similar distributions in various settings
 many times to assert that we would not assume
 that the null hypothesis was false more than
@@ -240,7 +242,6 @@ $\alpha . N_c$ where $\alpha$ is the significance level
 and $N_c$ is the number of comparisons.
 That is, to assert that the Kolmogorov-Smirnov test results
 are in accordance with the theory.
-
 In the case where the null hypothesis was false, 
 we were interested in measures of $c'$ given that
 the null hypothesis is never rejected for a small enough
@@ -256,19 +257,19 @@ and other comparisons.
 
 \section{RESULTS AND DISCUSSION}\label{sec:res}
 This section briefly describes each of the
-results, which are: benchmark tables, example uses of the test in
+results, which are: benchmark tables, example uses of $c'$ in
 real samples, an exposition of all the data obtained,
 and configurable scripts for the generation of all reference tables.
 
-\subsection{When the null hypothesis is true}
+\subsection{When the null hypothesis is true}\label{sec:true}
 The theory of the Kolmogorov-Smirnov test
-states that one can choose a significance value $\alpha$,
+states that one can choose a significance level $\alpha$,
 which is the maximum probability that one will reject the
-null hypothesis while it is true.
+null hypothesis when it is true.
 Accordingly,
-We rendered a table for each of the distributions:
-normal, uniform, 1-parameter Weibull, power.
-Three to five different settings of the distributions
+we rendered tables for each of the distributions:
+normal, uniform, 1-parameter Weibull, power function.
+Three to five different settings of each of the distributions
 were used, both samples had a size of 1000 observations,
 and $N_c=100$ comparisons were performed.
 
@@ -285,11 +286,11 @@ test rejects the null hypothesis for a given $\alpha$.
 
 The overall result is that, in fact, the false rejections of the null hypothesis
 does not exceed $\alpha . N_c$.
-The only exception in our simulations is the power-law distribution,
+The only exception in our simulations is the power-law (or power function) distribution,
 in which the number of rejections of the null hypothesis were usually bellow $\alpha . N_c$
 but, in extreme cases, our simulations reached almost $2\alpha N_c$.
 
-\input{../tables/tabWeibullNull_}
+\input{../tables/tabWeibullNull_Foo}
 
 \subsection{When the null hypothesis is false}\label{sec:false}
 In this case we are interested in measures of $c'$.
@@ -299,23 +300,23 @@ the mean $\mu(c')$, the standard deviation $\sigma(c')$,
 the median $m(c')$,
 the  fraction
 $\overline{C(\alpha)}=\frac{|C(\alpha)|}{N_c}$
-of rejection of the null hypothesis given the significance level $\alpha$.
-$min(c')$ states the three smallest values found in the simulations while
+of rejection of the null hypothesis given the significance level $\alpha$,
+$min(c')$ which states the three smallest values found in the simulations while
 $max(c')$ states the three greatest values.
 The null hypothesis is true in the boldface lines.
-$D$ is the KS statistic when sample size goes to infinity.
+$D$ is the KS statistic when sample size is very large.
 
 Two sets of tables were made to study the $c'$ statistic when
 the null hypothesis is false:
 \begin{itemize}
-	\item Changing the distrubutions: inn each table, the comparisons were made with
+	\item Changing the distributions: in each table, the comparisons were made with
 one of the distributions remaining unchanged
 while the other changes in each row.
 Table~\ref{tab:false1} is an example of such table.
 	\item Changing the sample sizes:
 		changing the number of elements in each sample
-		changes the value of the $c$ statistic. 
-		The $c$ statistic is given for two samples of varied sizes but
+		changes the value of the $c'$ statistic. 
+		Thus, $c'$ is given for two samples of varied sizes but
 		with fixed underlying distributions.         
 		Table~\ref{tab:false2} is an example of such table.
 \end{itemize}
@@ -329,34 +330,35 @@ a number of applications to real samples were performed:
 \begin{itemize}
 	\item Texts: Hamlet (Shakespeare), the Bible (KJV), Moby Dick (Herman Melville) and Esaú e Jacó (Machado de Assis),
 		where studied by regarding the stopwords and the words which were not stopwords.
-		Each of these works were considered as a whole and divided in the first and last half.
+		Each of these works were considered as a whole and divided in the first and second half.
                 These texts were used to obtain samples that are:
 		the mean of the token sizes, the standard variation of the token sizes,
 		the token sizes.
 		For the two first samples, the text was divided into 1000 parts in which the means
-		and standard variations where obtained.
+		and standard variations were obtained and regarded as the observations.
 		The overall result is: smaller $c'$ for comparisons between parts of the same text
-		although high $c'$ was incident even between parts of the same book.
-	\item Audio: the audio segments for testing the sound system of a Ubuntu Linux distribution
+		although high $c'$ was incident even between parts of the same book (especially for the Bible,
+		probably because of great differences between the New and Old Testaments).
+	\item Audio: the audio segments for testing the sound system of an Ubuntu Linux distribution
 		were considered both by their PCM samples and by their Daubechies 8 wavelet coefficients.
-		The segments yielded higher $c'$ values as the audio were more different, e.g. the noise
-		yielded the higher $c'$ when compared against the other signals.
-	\item Music: each classical composition were regarded as a sample
+		The segments yielded higher $c'$ values as the audio held greater differences, e.g. yield by different words
+		or noise.
+	\item Music: each classical composition was regarded as a sample
 		and the pitches were regarded as observations.
 		The results reflect music history.
-		For example, measures of $c$ involving Palestrina
-		increases with the exception of Beethoven
+		For example, measures of $c'$ involving Palestrina
+		increases along time with the exception of Beethoven
 		who, indeed, used modalism.
-		The values of $c$ related to Bach also increases along time,
+		The values of $c'$ related to Bach also increases along time,
 		and the outcome of the comparison against Palestrina 
 		is only exceeded when Sch\"onberg is reached,
 		which reflects the non-tonal discourse of both
 		Palestrina and Sch\"onberg.
 		Table~\ref{tab:mus} exposes these results.
-	\item OS status: workload of the CPUs and of the most consuming processes.
+	\item OS status: workload of the CPUs and memory allocation of the most consuming processes.
 		Again, the type of samples are mandatory:
 		they might all be identified by the values of $c'$
-		found in comparison to other samples,
+		found in comparison against other samples,
 		with the exception of the RAM memory.
 \end{itemize}
 
@@ -365,8 +367,8 @@ a number of applications to real samples were performed:
 \subsection{A thorough exposition of the tables}
 These results yield many tables which do not fit this article and would make
 this exposition clumsy.
-Their thorough expositions are in~\cite{ksstats},
-eich all the tables and descriptions.
+Their thorough exposition are in~\cite{ksstats},
+with all the tables and descriptions.
 
 \subsection{Scripts for automated generation of the tables}
 The tables that are benchmarks and that result from comparing real samples
@@ -376,7 +378,7 @@ Once the new tables are rendered, they might be assembled into a PDF by means
 of the latex files that yield~\cite{ksstats}.
 
 \section{CONCLUSIONS AND FURTHER WORK}\label{sec:conc}
-This exposition described the $c'$ statistic, which is a statistical distance,
+This exposition described the $c'$ statistical distance,
 the benchmark tables for $c'$ and its use to observe differences in real samples.
 As far as I understand, the tables are effective in exposing reference
 values in various settings of various distributions.
@@ -393,32 +395,25 @@ Potential next steps are:
 		of~\cite{gmaneLegacy}.
 	\item Make a better presentation of the benchmark tables in~\cite{ksstats}.
 		They are sound but were made for personal usage and might be enhanced
-		by enhancements in the writing of their descriptions and contextualization.
+		by better descriptions and contextualization.
 	\item Use other distributions for obtaining the tables.
 		This is relevant mainly because the number of rejections of the null hypothesis
 		was sometimes higher that expected for the significance level in power-law distributions.
-	\item Compare $c'$ to other statistical distances: in which cases are they suitable and
+	\item Compare $c'$ to other statistical distances: in which cases are they suitable, preferable and
 		what results they yield.
+	\item Give a more formal account of the conditions needed for $c'$ to be considered a metric 
+		and for the cases where $c'$ does not satisfy Equation (2).
+	\item Obtain reference values of $c'$ for simulations where the null hypothesis is true.
 \end{itemize}
-\noindent Finally, the most urgent developments this contribution need are:
-1) understand the differences in $c'$ in the case of continuous and discrete distributions;
+\noindent Finally, the most urgent developments this contribution needs are:
+1) a description of the differences in $c'$ in the cases of continuous and discrete distributions;
 and 2) implement these measurements without using histograms because they are not needed to
 attain the cumulative distribution used for the Kolmogorov-Smirnov statistic and because
-$c'$ is a metric (not a generalized metric) if obtained without using histograms,
+$c'$ might be regarded as a metric (not a generalized metric) if obtained without using histograms,
 as exposed in Section~\ref{sec:desc}.
 
-% discrete vs continous
-% are histograms really needed?
-
-% use other distributions
-% organize the scripts
-% make a better presentation of the benchmark tables
-% compare against other statistical distances
-
-
-
 \subsection*{\textit{Acknowledgements}}
-The authors thank CNPq and FAPESP for the funding received while researching the topic of this article,
+The author thanks CNPq for the funding received while researching the topic of this article,
 the researchers of IFSC/USP and ICMC/USP for the recurrent collaboration in every situation
 where we needed directions for investigation.
 
@@ -438,6 +433,11 @@ Chicheportiche, R., \& Bouchaud, J. P. (2012). Weighted Kolmogorov-Smirnov test:
 
 \bibitem[Fabbri, 2015]{ksstats}
 	Fabbri, R. (2015). Benchmark tables for a statistical distance metric derived from the Kolmogorov-Smirnov test. Github repositories. From \url{https://github.com/ttm/kolmogorov-smirnov/raw/master/paper.pdf}
+
+\bibitem[Wikipedia, 2017]{wikiStatDist}
+Statistical distance. (2017, August 15). In Wikipedia, The Free Encyclopedia. Retrieved
+11:54, August 24, 2017
+		, from \url{https://en.wikipedia.org/w/index.php?title=Statistical_distance&oldid=795679286}
 \end{thebibliography}
 % ------------------------------------------------------------------------
 
