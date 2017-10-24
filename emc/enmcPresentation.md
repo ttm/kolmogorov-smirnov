@@ -3,7 +3,7 @@
 
 #title:
 A Statistical Distance Derived From The Kolmogorov-Smirnov Test:
-   specification, reference measures (benchmarks) and example uses
+specification, reference measures (benchmarks) and example uses
 
 
 #authors:
@@ -37,15 +37,30 @@ renato.fabbri@gmail.com, fernandogularte@gmail.com
 
 *Introduction*
 
-c' is a statistical distance
+c' is a true or generalized statistical distance
 derived from the Kolmogorov-Smirnov test.
 
-d(x, y) >= 0
-d(x, y) = 0  <=> x = y
-d(x, y) = d(y, x)
-d(x, y) <= d(x, z) + d(z, y)
+A true statistical distance satisfies: 
+d(x, y) >= 0                       (1)
+d(x, y) =  0     <=> x = y         (2)
+d(x, y) =  d(y, x)                 (3)
+d(x, y) <= d(x, z) + d(z, y)       (4)
 
-c' is true or generalized.
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
@@ -60,6 +75,31 @@ c' is true or generalized.
 
 a    & 0.1  & 0.05 & 0.025 & 0.01 & 0.005 & 0.001
 c(a) & 1.22 & 1.36 & 1.48  & 1.63 & 1.73  & 1.95 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 =========================
 (slide 3)
@@ -85,6 +125,23 @@ documentation
 
 
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 =========================
 (slide 4)
 
@@ -92,12 +149,39 @@ documentation
 
 * Tables for n=n'=1000,
 
-* Emphasis for a.n when the null hypothesis is true
+* Emphasis for a.N when the null hypothesis is true
 
 * Measures of c' when it is false
 
 * c' for samples derived from texts, sound,
 music, OS statistics
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
@@ -118,18 +202,41 @@ music, OS statistics
 
 
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 ==========================
 (slide 6)
 
 *Conclusions*
 
-* Useful and robust statistic (?)
+* c' is a useful and robust statistic (?)
 
 * Reasonable collection of benchmark tables (?)
 
 * Better organize scripts
 
-* Account for the 2an rejections for power-law
+* Account for the 2x rejections for power-law
 
 * Compare c' to other statistical distances
 
